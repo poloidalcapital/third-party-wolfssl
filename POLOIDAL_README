@@ -1,0 +1,27 @@
+Steps used to pre-build 5.8.2
+
+Install packages required to build
+
+apt install autoconf
+apt install automake
+apt install libtool
+
+Create branch from the tag for release 5.8.2
+
+git branch 5.8.2_build decea12e223869c8f8f3ab5a53dc90b69f436eb2
+git push origin -u 5.8.2_build
+git checkout 5.8.2_build
+
+Build and Install
+
+autogen.sh
+configure --enable-static --disable-shared --enable-singlethreaded --enable-opensslextra --enable-tlsv12 --enable-tls13 --disable-examples --disable-crypttests --enable-staticmemory
+make
+make install
+mkdir lib
+cp /usr/local/lib/libwolfssl.* ./lib
+mkdir include
+cp -r  /usr/local/include/wolfssl/* ./include
+
+add, commit and push the lib and include directories
+
