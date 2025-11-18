@@ -35,9 +35,9 @@ mkdir lib
 cp /usr/local/lib/libwolfssl.* ./lib
 mkdir include
 cp -r  /usr/local/include/wolfssl/* ./include
-tar czvf 5.8.2_release.tgz ./include ./lib
+tar cvf 5.8.2_release.tar ./include ./lib
 mkdir release
-mv 5.8.2_release.tgz ./release
+mv 5.8.2_release.tar ./release
 
 add, commit and push the lib and include directories
 
