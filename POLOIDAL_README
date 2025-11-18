@@ -1,4 +1,16 @@
-Steps used to pre-build 5.8.2
+WolfSSL has many build options.
+It is therefore not possible for the repo to be released by its authors as includes + libs, but only as source.
+At the same time, we do not want to build WolfSSL within our build.
+Nor do we want to download the entire repo before or during our build.
+Therefore, we simply pre-build with our desired options and release headers + libs to a .tgz file.
+We can the use cmake FetchContent, specifying the .tgz in the URL argument to use the release.
+
+If there are other build options or other versions required elsewhere within the organisation, then
+this can be facilitated using the same steps below but with a different branch name.
+
+
+Steps used to pre-build release to a tgz file
+---------------------------------------------
 
 Install packages required to build
 
@@ -6,7 +18,8 @@ apt install autoconf
 apt install automake
 apt install libtool
 
-Create branch from the tag for release 5.8.2
+Create branch from the tag for building 5.8.2
+Note that tag for the release needs to be found on master
 
 git branch 5.8.2_build decea12e223869c8f8f3ab5a53dc90b69f436eb2
 git push origin -u 5.8.2_build
@@ -22,6 +35,9 @@ mkdir lib
 cp /usr/local/lib/libwolfssl.* ./lib
 mkdir include
 cp -r  /usr/local/include/wolfssl/* ./include
+tar czvf 5.8.2_release.tgz ./include ./lib
+mkdir release
+mv 5.8.2_release.tgz ./release
 
 add, commit and push the lib and include directories
 
