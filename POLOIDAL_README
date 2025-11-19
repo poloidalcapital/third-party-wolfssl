@@ -19,7 +19,7 @@ apt install automake
 apt install libtool
 
 Create branch from the tag for building 5.8.2
-Note that tag for the release needs to be found on master
+Note that tags were lost when the repo was forked so look in the original repo for release tags and the hash.
 
 git branch 5.8.2_build decea12e223869c8f8f3ab5a53dc90b69f436eb2
 git push origin -u 5.8.2_build
