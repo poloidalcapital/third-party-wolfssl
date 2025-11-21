@@ -31,13 +31,19 @@ autogen.sh
 configure --enable-static --disable-shared --enable-singlethreaded --enable-opensslextra --enable-tlsv12 --enable-tls13 --disable-examples --disable-crypttests --enable-staticmemory
 make
 make install
-mkdir lib
-cp /usr/local/lib/libwolfssl.* ./lib
-mkdir include
-cp -r  /usr/local/include/wolfssl/* ./include
-tar cvf 5.8.2_release.tar ./include ./lib
+
+mkdir package
+mkdir package/wolfssl/
+mkdir package/wolfssl/include
+mkdir package/wolfssl/lib
 mkdir release
-mv 5.8.2_release.tar ./release
+
+cp /usr/local/lib/libwolfssl.* package/wolfssl/lib
+cp -r  /usr/local/include/wolfssl/* package/wolfssl/include
+
+cd package
+tar cvf 5.8.2_release.tar wolfssl
+mv 5.8.2_release.tar ../release
 
 add, commit and push the lib and include directories
 
